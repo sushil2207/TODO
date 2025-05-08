@@ -1,0 +1,17 @@
+.inputdiv{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    
+    justify-content: space-around;
+}
+
+input{
+    width: 37vw;
+}
+
+button{
+    border-radius: 2px;
+    background-color: aqua;
+    padding: 4px;
+}

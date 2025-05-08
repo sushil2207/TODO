@@ -1,0 +1,22 @@
+nav{
+    background-color: bisque;
+    position: relative;
+    height: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.active-link{
+    font-weight: bold;
+    color: red;
+}
+

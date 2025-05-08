@@ -1,0 +1,36 @@
+.home{
+    display: block;
+    margin-top: 40px;
+    margin-left: 15vw;
+}
+
+.inputdiv{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    
+    justify-content: space-around;
+}
+
+input{
+    width: 37vw;
+}
+
+.button1{
+    border-radius: 2px;
+    background-color: aqua;
+    padding: 4px;
+}
+
+.lastDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2vw;
+}
+
+.button2{
+    border-radius: 2px;
+    background-color: aqua;
+    padding: 4px;
+}
