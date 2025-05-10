@@ -27,4 +27,10 @@ router.patch('/:id',async(req,res) =>{
     res.json(updateTask)
 })
 
+router.delete('/:id',async(req,res) =>{
+    const deleteTask = await Tasks.findByIdAndDelete(req.params.id)
+
+    res.json(deleteTask)
+});
+
 export default router;

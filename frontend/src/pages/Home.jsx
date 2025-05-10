@@ -13,16 +13,17 @@ const Home = (props) => {
   const [placeholder, setPlaceHolder] = useState("Add New Task");
   const [getId, setId] = useState([]);
 
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/`);
+  const fetchTasks = async () => {
+    
+      const response = await axios.get(`http://localhost:3000/`).then((response) =>
+        useData(response.data)
+      ).catch( (err) => {
+      console.error(err) })
+    
+  };
 
-        useData(response.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  useEffect(() => {
+   
     fetchTasks();
   }, []);
 
@@ -62,35 +63,33 @@ const Home = (props) => {
     // Do something with inputValue
   };
 
-  const updateData =  (e) => {
+  const updateData = (e) => {
     e.preventDefault();
     // console.log(getId);
-     getId.map((task) =>
-        axios.patch(`http://localhost:3000/${task}`, { active: "N" })
-      .then((response) =>
-        useData(prevTask=> 
-            prevTask.map((taskUpdade => (   
-                taskUpdade._id === task ? {...taskUpdade,active:"N"}:taskUpdade
-            )))
+    getId.map((task) =>
+      axios
+        .patch(`http://localhost:3000/${task}`, { active: "N" })
+        .then((response) =>
+          fetchTasks()
         )
-      ).catch((error) => {
-        console.error("Error updating task ", error);
-      }))
-
-    //   for (const key of  getId){
-    //     console.log(key)
-    //     axios.patch(`http://localhost:3000/${task}`, { active: "N" })
-    //    .then((response) =>
-    //      useData([...taskData,response.data])
-
-    //  ).catch((error) => {
-    //     console.error("Error updating task ", error);
-    //   })
-     // }
-
-      
-    
+        .catch((error) => {
+          console.error("Error updating task ", error);
+        })
+    );
   };
+
+  const deleteData =() => {
+    getId.map((task) =>
+      axios
+        .delete(`http://localhost:3000/${task}`)
+        .then((response) =>
+          fetchTasks()
+        )
+        .catch((error) => {
+          console.error("Error updating task ", error);
+        })
+    );
+  }
 
   return (
     <div>
@@ -124,6 +123,9 @@ const Home = (props) => {
       <div className="lastDiv">
         <button className="button2" onClick={updateData}>
           COMPLETED
+        </button>
+        <button className="button2" onClick={deleteData}>
+          Delete
         </button>
       </div>
     </div>
